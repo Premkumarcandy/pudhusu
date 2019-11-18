@@ -31,7 +31,7 @@ pipeline {
         }
         stage("DeploytoGKE") {
             steps {
-                sh "sed -i 's/hello:${env.BUILD_ID}/g' deployment.yml"
+                sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yml"
                 //step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
                 step([$class: 'KubernetesEngineBuilder', projectId: "red-delight-223804", clusterName: "cision", location: "us-central1-a", manifestPattern: 'deployment.yml', credentialsId: "My-First-Project", verifyDeployments: true])
             }
