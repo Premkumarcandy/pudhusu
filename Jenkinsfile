@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PROJECT_ID = ‘red-delight-223804’
+        PROJECT_ID = 'red-delight-223804'
         CLUSTER_NAME = ‘cision’
         LOCATION = ‘us-central1-a’
         CREDENTIALS_ID = ‘My-First-Project’
