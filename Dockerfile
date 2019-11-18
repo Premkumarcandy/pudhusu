@@ -9,7 +9,7 @@ RUN npm config set package-lock false
 RUN npm install
 FROM bitnami/node:latest
 ENV NODE_ENV=“production”
-COPY . /app /app
+COPY /app /app
 WORKDIR /app
 ENV PORT 5000
 EXPOSE 5000
