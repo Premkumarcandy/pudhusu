@@ -2,24 +2,24 @@ pipeline {
     agent any
     environment {
         PROJECT_ID = 'red-delight-223804'
-        CLUSTER_NAME = ‘cision’
-        LOCATION = ‘us-central1-a’
-        CREDENTIALS_ID = ‘My-First-Project’
+        CLUSTER_NAME = 'cision'
+        LOCATION = 'us-central1-a'
+        CREDENTIALS_ID = 'My-First-Project'
     }
     stages {
-        stage(“Checkout”) {
+        stage("Checkout") {
             steps {
                 checkout scm
             }
         }
-        stage(“Buildimage”) {
+        stage("Buildimage") {
             steps {
                 script {
                     myapp = docker.build(impavithra/hello)
                 }
             }
         }
-        stage(“Pushimage”) {
+        stage("Pushimage") {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', ‘dockerhub’) {
@@ -29,9 +29,9 @@ pipeline {
                 }
             }
         }
-        stage(‘DeploytoGKE’) {
+        stage("DeploytoGKE") {
             steps {
-                sh “sed -i 's/hello:latest/hello/g' deployment.yml”
+                sh "sed -i 's/hello:latest/hello/g' deployment.yml"
                 step([$class: ‘KubernetesEngineBuilder’, projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: ‘deployment.yml’, credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
