@@ -1,4 +1,4 @@
-FROM bitnami/node as builder
+FROM bitnami/node:latest as builder
 ENV NODE_ENV=“production”
 # Copy app’s source code to the /app directory
 COPY . /app
@@ -6,7 +6,7 @@ COPY . /app
 WORKDIR /app
 # Install Node.js dependencies defined in ‘/app/packages.json’
 RUN npm install
-FROM bitnami/node:9-prod
+FROM bitnami/node:latest
 ENV NODE_ENV=“production”
 COPY --from=builder /app /app
 WORKDIR /app
