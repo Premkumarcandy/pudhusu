@@ -15,7 +15,7 @@ pipeline {
         stage(“Buildimage”) {
             steps {
                 script {
-                    myapp = docker.build(impavithra/hello:“${env.BUILD_ID}“)
+                    myapp = docker.build("impavithra/hello:latest“)
                 }
             }
         }
