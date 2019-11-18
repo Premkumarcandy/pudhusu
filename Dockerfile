@@ -5,6 +5,7 @@ COPY . /app
 # The application’s directory will be the working directory
 WORKDIR /app
 # Install Node.js dependencies defined in ‘/app/packages.json’
+RUN npm config set package-lock false
 RUN npm install
 FROM bitnami/node:latest
 ENV NODE_ENV=“production”
