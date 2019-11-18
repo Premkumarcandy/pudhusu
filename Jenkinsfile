@@ -7,7 +7,7 @@ pipeline {
         CREDENTIALS_ID = ‘My-First-Project’
     }
     stages {
-        stage(“Checkout-code”) {
+        stage(“Checkout”) {
             steps {
                 checkout scm
             }
