@@ -30,8 +30,8 @@ pipeline {
             }
         }
         stage(‘DeploytoGKE’) {
-            steps{
-                sh “sed -i ‘s/hello:latest/hello’ deployment.yml”
+            steps {
+                sh “sed -i ‘s/hello:latest/hello/g’ deployment.yml”
                 step([$class: ‘KubernetesEngineBuilder’, projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: ‘deployment.yml’, credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
