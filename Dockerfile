@@ -7,10 +7,10 @@ WORKDIR /app
 # Install Node.js dependencies defined in ‘/app/packages.json’
 RUN npm config set package-lock false
 RUN npm install
-FROM bitnami/node:latest
-ENV NODE_ENV=“production”
-COPY /app /app
-WORKDIR /app
+# FROM bitnami/node:latest
+# ENV NODE_ENV=“production”
+# COPY /app /app
+# WORKDIR /app
 ENV PORT 5000
 EXPOSE 5000
 # Start the application
